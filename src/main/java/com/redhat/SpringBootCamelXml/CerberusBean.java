@@ -85,9 +85,9 @@ public class CerberusBean {
 		this.senhaUsuario = senhaUsuario;
 	}
 
-	@Bean
-    public String getAuthorization() {
-		System.out.println("Usuário digitado no header"  +toString());
+//	@Bean
+    public String getAuthorization(String nome) {
+		System.out.println("Usuário digitado no header ="  +nome);
     	String responseAsString = null;
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpGet request = new HttpGet("http://jeap.rio.rj.gov.br/cerberus/seam/resource/v1/permissoes");
@@ -95,7 +95,7 @@ public class CerberusBean {
 		request.addHeader("provedor", "EXEMPLO");
 		request.addHeader("consumidor", "EXEMPLO");
 		request.addHeader("chaveAcesso", "d4fec2a2-7f41-43bd-9c0c-c00afe8f4858");
-		request.addHeader("usuario", usuario);
+		request.addHeader("usuario", nome);
 		request.addHeader("senhaUsuario", "xxxx");
 		HttpResponse response = null;
 		try {
