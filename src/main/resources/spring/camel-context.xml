@@ -18,5 +18,10 @@
             </transform>
             <log id="route-log2" message=">>> ${body}"/>
         </route>
+        <!--route id="_route1">
+            <from id="_from1" uri="restlet:http:localhost:8080/cerberus"/>
+            <bean id="bean1" ref="cerberusBean"/>
+            <log id="_log1" message=">>> ${body}"/>
+        </route>  -->
     </camelContext>
 </beans>
