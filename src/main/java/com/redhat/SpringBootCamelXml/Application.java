@@ -19,6 +19,7 @@ package com.redhat.SpringBootCamelXml;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.servlet.CamelHttpTransportServlet;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.apache.camel.model.rest.RestParamType;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -34,8 +35,7 @@ import org.springframework.stereotype.Component;
 public class Application extends SpringBootServletInitializer {
 	@Bean
 	ServletRegistrationBean servletRegistrationBean() {
-		ServletRegistrationBean servlet = new ServletRegistrationBean(new CamelHttpTransportServlet(),
-				"/cerberus/*");
+		ServletRegistrationBean servlet = new ServletRegistrationBean(new CamelHttpTransportServlet(), "/cerberus/*");
 		servlet.setName("CamelServlet");
 		return servlet;
 	}
@@ -48,40 +48,11 @@ public class Application extends SpringBootServletInitializer {
 					.apiProperty("api.title", "Camel REST API").apiProperty("api.version", "1.0")
 					.apiProperty("cors", "true").apiContextRouteId("doc-api").component("servlet")
 					.bindingMode(RestBindingMode.json);
-
-			rest("/bye").get().to("direct:bye");
-			from("direct:bye").bean(CerberusBean.class);
-
+			rest("/bye").get("/{usuario}").description("Find user by usuario").outType(CerberusBean.class).param()
+					.name("usuario").type(RestParamType.path).description("User name=CPF")
+					.dataType("String").endParam().to("bean:cerberusBean?method=getAuthorization(${header.usuario})");
+			// from("direct:bye").bean(CerberusBean.class);
 		}
-
-		// @Bean
-		// String helloWorld() {
-		// String responseAsString = null;
-		// HttpClient client = HttpClientBuilder.create().build();
-		// HttpGet request = new
-		// HttpGet("http://jeap.rio.rj.gov.br/cerberus/seam/resource/v1/permissoes");
-		// request.addHeader("ambiente", "DESENVOLVIMENTO");
-		// request.addHeader("provedor", "EXEMPLO");
-		// request.addHeader("consumidor", "EXEMPLO");
-		// request.addHeader("chaveAcesso",
-		// "d4fec2a2-7f41-43bd-9c0c-c00afe8f4858");
-		// request.addHeader("usuario", "05520685789");
-		// request.addHeader("senhaUsuario", "xxxx");
-		// HttpResponse response = null;
-		// try {
-		// response = client.execute(request);
-		//
-		// InputStream inputStream = response.getEntity().getContent();
-		// responseAsString = CharStreams.toString(new
-		// InputStreamReader(inputStream, "UTF-8"));
-		// System.out.println(response.getStatusLine().getStatusCode());
-		// System.out.println(responseAsString);
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-		//
-		// return responseAsString;
-		// }
 	}
 
 	/**
