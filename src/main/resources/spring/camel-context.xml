@@ -11,5 +11,12 @@
             </transform>
             <log id="route-log" message=">>> ${body}"/>
         </route>
+        <route id="simple-route2">
+            <from id="route-timer2" uri="timer:foo?period=2000"/>
+            <transform id="route-transform2">
+                <method ref="cerberusBean"/>
+            </transform>
+            <log id="route-log2" message=">>> ${body}"/>
+        </route>
     </camelContext>
 </beans>
