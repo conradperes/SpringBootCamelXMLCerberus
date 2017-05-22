@@ -6,8 +6,8 @@
 	<groupId>com.redhat</groupId>
 	<artifactId>SpringBootCamelXml</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Fabric8 :: Quickstarts :: Spring-Boot :: Camel XML</name>
-	<description>Spring Boot example running a Camel route defined in XML</description>
+	<name>Api Cerberus Jboss Fuse ESB</name>
+	<description>Api do Cerberus sendo exposta para ser consumida via barramento Jboss Fuse do GICOF</description>
 	<properties>
 		<spring-boot.version>1.4.3.RELEASE</spring-boot.version>
 		<fabric8.version>2.2.192</fabric8.version>
