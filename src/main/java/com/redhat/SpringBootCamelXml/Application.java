@@ -48,9 +48,9 @@ public class Application extends SpringBootServletInitializer {
 					.apiProperty("api.title", "Camel REST API").apiProperty("api.version", "1.0")
 					.apiProperty("cors", "true").apiContextRouteId("doc-api").component("servlet")
 					.bindingMode(RestBindingMode.json);
-			rest("/bye").description("Find user by usuario").get("/{usuario}").produces("application/json").param().name("nome").
+			rest("/consultarPermissoes").description("Find user by usuario").get("/{usuario}").produces("application/json").param().name("nome").
 			type(RestParamType.path).description("primeiro valor a ser somado").dataType("String").endParam()
-			.to("bean:cerberusBean?method=getAuthorization(${headers.nome}, ${headers.ambiente}, ${headers.provedor}, ${headers.consumidor})");
+			.to("bean:cerberusBean?method=getAuthorization(${headers.nome}, ${headers.ambiente}, ${headers.provedor}, ${headers.consumidor}, ${headers.senha}, ${headers.chave} )");
 			// from("direct:bye").bean(CerberusBean.class);
 		}
 	}

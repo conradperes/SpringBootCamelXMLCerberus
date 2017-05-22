@@ -38,6 +38,7 @@ import com.google.common.io.CharStreams;
 public class CerberusBean {
 	
 	
+	private static final String ENDPOINT_ADDRESS = "http://jeap.rio.rj.gov.br/cerberus/seam/resource/v1/permissoes";
 	private String ambiente;
 	private String provedor;
 	private String consumidor;
@@ -86,17 +87,17 @@ public class CerberusBean {
 	}
 
 //	@Bean
-    public String getAuthorization(String nome, String ambiente, String provedor, String consumidor) {
+    public String getAuthorization(String nome, String ambiente, String provedor, String consumidor, String senha, String chave) {
 		System.out.println("Usuário digitado no header ="  +nome);
     	String responseAsString = null;
 		HttpClient client = HttpClientBuilder.create().build();
-		HttpGet request = new HttpGet("http://jeap.rio.rj.gov.br/cerberus/seam/resource/v1/permissoes");
+		HttpGet request = new HttpGet(ENDPOINT_ADDRESS);
 		request.addHeader("ambiente", ambiente);
 		request.addHeader("provedor", provedor);
 		request.addHeader("consumidor", consumidor);
-		request.addHeader("chaveAcesso", "d4fec2a2-7f41-43bd-9c0c-c00afe8f4858");
+		request.addHeader("chaveAcesso", chave);//"d4fec2a2-7f41-43bd-9c0c-c00afe8f4858"
 		request.addHeader("usuario", nome);
-		request.addHeader("senhaUsuario", "xxxx");
+		request.addHeader("senhaUsuario", senha);
 		HttpResponse response = null;
 		try {
 			response = client.execute(request);

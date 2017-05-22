@@ -28,14 +28,5 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="/Users/conradmarquesperes/.m2/repository/org/apache/camel/camel-servlet/2.18.1.redhat-000012/camel-servlet-2.18.1.redhat-000012.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="maven.groupId" value="org.apache.camel"/>
-			<attribute name="maven.artifactId" value="camel-servlet"/>
-			<attribute name="maven.version" value="2.18.1.redhat-000012"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
