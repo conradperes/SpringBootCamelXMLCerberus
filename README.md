@@ -1,6 +1,6 @@
-# Spring-Boot and Camel XML QuickStart
+# Api Cerberus do Jboss Fuse ESB
 
-This example demonstrates how to configure Camel routes in Spring Boot via a Spring XML configuration file.
+Api do Cerberus sendo exposta para ser consumida via barramento Jboss Fuse do GICOF
 
 The application utilizes the Spring [`@ImportResource`](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/annotation/ImportResource.html) annotation to load a Camel Context definition via a [camel-context.xml](src/main/resources/spring/camel-context.xml) file on the classpath.
 
